@@ -4,30 +4,30 @@ import React, { useState } from "react";
 /** Form for adding.
  *
  * Props:
- * - initialFormData
+ * - todo: todo object (optional)
  * - handleSave: function to call in parent.
  *
  * State: formData { title, description, priority }
  *
  * { TodoApp, EditableTodo } -> TodoForm
  */
-const initialState = {
-  title: "",
-  description: "",
-  priority: 1
-};
 
-function TodoForm({ handleSave, initialFormData = initialState, id }) {
+
+function TodoForm({ handleSave, todo }) {
+
+  const initialFormData = {
+    title: todo? todo.title : "",
+    description: todo? todo.description : "",
+    priority: todo? todo.priority : 1
+  };
 
   const [formData, setFormData] = useState(initialFormData);
-
-  console.log("HERE IS OUR FORM DATA ===>", formData);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(currData => ({
-      ...currData,
+    setFormData(formData => ({
+      ...formData,
       [name]: value,
     }));
   }
@@ -35,18 +35,17 @@ function TodoForm({ handleSave, initialFormData = initialState, id }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave(formData);
+    handleSave({ ...formData, id: todo?.id });
     setFormData(initialFormData);
+
   }
 
   return (
-    // className TodoForm
     <form className="NewTodoForm" onSubmit={handleSubmit}>
-
       <div className="mb-3">
-        <label htmlFor={`newTodo-title-${id}`}>Title:</label>
+        <label htmlFor='newTodo-title'>Title:</label>
         <input
-          id={`newTodo-title-${id}`}
+          id={'newTodo-title'}
           name="title"
           className="form-control"
           placeholder="Title"
@@ -55,11 +54,10 @@ function TodoForm({ handleSave, initialFormData = initialState, id }) {
           aria-label="Title"
         />
       </div>
-
       <div className="mb-3">
-        <label htmlFor={`newTodo-description-${id}`}>Description:</label>
+        <label htmlFor='newTodo-description'>Description:</label>
         <textarea
-          id={`newTodo-description-${id}`}
+          id='newTodo-description'
           name="description"
           className="form-control"
           placeholder="Description"
@@ -68,25 +66,24 @@ function TodoForm({ handleSave, initialFormData = initialState, id }) {
           aria-label="Description"
         />
       </div>
-
       <div className="mb-3 d-flex justify-content-between">
         <div className="w-75 d-flex justify-content-between">
-          <label htmlFor={`newTodo-priority-${id}`}
+          <label htmlFor='newTodo-priority'
             className="d-inline-flex">Priority:&nbsp;&nbsp;
           </label>
-          <select id={`newTodo-priority-${id}`}
+          <select id='newTodo-priority'
             name="priority"
             value={formData.priority}
             onChange={handleChange}
             className="form-control form-control-sm d-inline-flex"
           >
-            <option value={1}>Ultra-Über</option>
-            <option value={2}>Über</option>
-            <option value={3}>Meh</option>
+            <option value={1}>One</option>
+            <option value={2}>Two</option>
+            <option value={3}>Three</option>
           </select>
         </div>
-        <button className={`btn-primary rig btn btn-sm NewTodoForm-addBtn-${id}`}>
-          Gø!
+        <button className='btn-primary rig btn btn-sm NewTodoForm-addBtn'>
+          Go!
         </button>
       </div>
 
