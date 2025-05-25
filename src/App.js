@@ -1,4 +1,5 @@
 import React from "react";
+import QuoteApp from "./QuoteApp";
 import TodoApp from "./TodoApp";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.css";
@@ -19,6 +20,7 @@ function App() {
       <header className="container-fluid pt-4 pb-1">
         <div className="container">
           <h1>My Todos</h1>
+          <QuoteApp />
         </div>
       </header>
 
