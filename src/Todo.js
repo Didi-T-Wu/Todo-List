@@ -9,11 +9,7 @@ import React from "react";
  **/
 
 function Todo({ todo, toggleComplete }) {
-  //TODO: handle case where todo is completed, add isCompleted prop
-  // Add toggle function for completed todo and update in parent
-  // add onClick event listener to toggle completed todo
   const { title, description, priority, isCompleted } = todo;
-
 
   return (
     <div className="Todo">

@@ -14,8 +14,6 @@ import Todo from "./Todo";
 
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
-  // TODO: handle case where a todo is completed
-
 
   function findTopTodo(todos) {
     if (todos.length === 0) return null;
