@@ -3,7 +3,7 @@ import React from "react";
 /** Simple presentation component for a todo.
  *
  * Props:
- * - todo: like { id, title, description, priority }
+ * - todo: like { id, title, description, priority, isCompleted }
  *
  * { EditableTodo, TopTodo } -> Todo
  **/
