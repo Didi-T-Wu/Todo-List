@@ -33,4 +33,3 @@ function Todo({ todo, toggleComplete }) {
 }
 
 export default Todo;
-``
