@@ -52,6 +52,7 @@ function TodoForm({ onSubmit, todo }) {
           onChange={handleChange}
           value={formData.title}
           aria-label="Title"
+          required
         />
       </div>
       <div className="mb-3">
