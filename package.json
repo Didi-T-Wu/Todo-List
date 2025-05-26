@@ -10,6 +10,7 @@
     "react": "*",
     "react-dom": "*",
     "react-scripts": "*",
+    "sass": "^1.89.0",
     "uuid": "*",
     "web-vitals": "*"
   },
