@@ -21,7 +21,7 @@ function TodoApp({ initialTodos }) {
   /** add a new todo to list */
   // TODO: add isCompleted property to new todo
   function createTodo(formData) {
-    setTodos(currTodos => [...currTodos, { ...formData, id: uuid() }]);
+    setTodos(currTodos => [...currTodos, { ...formData, id: uuid(), isCompleted: false }]);
   }
 
   /** update a todo with updatedTodo */

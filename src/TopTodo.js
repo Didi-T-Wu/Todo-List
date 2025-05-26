@@ -15,14 +15,34 @@ import Todo from "./Todo";
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
   // TODO: handle case where a todo is completed
-  let top = todos.reduce(
-    (acc, cur) =>
-      cur.priority < acc.priority ? cur : acc, todos[0]
-  );
+
+
+  function findTopTodo(todos) {
+    if (todos.length === 0) return null;
+
+    // Filter out completed todos
+    const incompleteTodos = todos.filter(todo => !todo.isCompleted);
+
+    if (incompleteTodos.length === 0) return null;
+
+    // Find the todo with the highest priority (lowest priority number)
+    return incompleteTodos.reduce((highestPriorityTodo, currentTodo) => {
+      return currentTodo.priority < highestPriorityTodo.priority
+      ? currentTodo
+      : highestPriorityTodo;
+    });
+
+  }
+
+  const topTodo = findTopTodo(todos);
+  if (!topTodo) {
+    return <div className="TopTodo">No active todos.</div>;
+  }
+
 
   return (
     <div>
-      <Todo todo={top} />
+      <Todo todo={topTodo} />
     </div>
   );
 }

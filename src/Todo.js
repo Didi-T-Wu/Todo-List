@@ -8,16 +8,31 @@ import React from "react";
  * { EditableTodo, TopTodo } -> Todo
  **/
 
-function Todo({ todo }) {
+function Todo({ todo, toggleComplete }) {
   //TODO: handle case where todo is completed, add isCompleted prop
   // Add toggle function for completed todo and update in parent
   // add onClick event listener to toggle completed todo
-  const { title, description, priority } = todo;
+  const { title, description, priority, isCompleted } = todo;
+
+
   return (
-      <div className="Todo">
-        <div><b>{ title }</b> <small>priority: { priority }</small></div>
-        <div><small>{ description }</small></div>
+    <div className="Todo">
+      <div>
+        <div
+          onClick={toggleComplete}
+          style={{
+            textDecoration: isCompleted ? "line-through" : "none",
+            cursor: "pointer",
+          }}
+        >
+          <b>{title}</b>
+        </div>
+        <small>Priority: {priority}</small>
       </div>
+      <div>
+        <small>{description}</small>
+      </div>
+    </div>
   );
 }
 
