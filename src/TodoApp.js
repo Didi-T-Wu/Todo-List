@@ -19,12 +19,13 @@ function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
-  function create(newTodo) {
-    setTodos(currTodos => [...currTodos, { ...newTodo, id: uuid() }]);
+  // TODO: add isCompleted property to new todo
+  function createTodo(formData) {
+    setTodos(currTodos => [...currTodos, { ...formData, id: uuid() }]);
   }
 
   /** update a todo with updatedTodo */
-  function update(updatedTodo) {
+  function updateTodo(updatedTodo) {
     setTodos(currTodos => currTodos.map(todo => {
       if (todo.id === updatedTodo.id) {
         return { ...todo, ...updatedTodo };
@@ -34,7 +35,7 @@ function TodoApp({ initialTodos }) {
   }
 
   /** delete a todo by id */
-  function remove(id) {
+  function removeTodo(id) {
     setTodos(currTodos => currTodos.filter(currTodo => currTodo.id !== id));
   }
 
@@ -46,8 +47,8 @@ function TodoApp({ initialTodos }) {
           {todos.length > 0 ? (
             <EditableTodoList
               todos={todos}
-              update={update}
-              remove={remove}
+              updateTodo={updateTodo}
+              removeTodo={removeTodo}
             />
           ) : (
             <span className="text-muted">You have no todos.</span>
@@ -62,8 +63,8 @@ function TodoApp({ initialTodos }) {
             </section>
           )}
           <section>
-            <h3 className="mb-3">Add Nü</h3>
-            <TodoForm handleSave={create} />
+            <h3 className="mb-3">Add New</h3>
+            <TodoForm onSubmit={createTodo} />
           </section>
         </div>
 

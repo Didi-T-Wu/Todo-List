@@ -6,13 +6,13 @@ import TodoForm from "./TodoForm";
  *
  * Props
  * - todo
- * - update(): fn to call to update a todo
+ * - updateTodo(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
  *
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({ todo, update, remove }) {
+function EditableTodo({ todo, updateTodo, removeTodo }) {
   const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
@@ -22,12 +22,16 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Call remove fn passed to this. */
   function handleDelete() {
-    remove(todo.id);
+    removeTodo(todo.id);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) {
-    update(formData);
+  function updateTodoAndToggleEdit(formData) {
+    const updatedTodo = {
+      ...todo,
+      ...formData
+    };
+    updateTodo(updatedTodo);
     toggleEdit();
   }
 
@@ -35,7 +39,7 @@ function EditableTodo({ todo, update, remove }) {
     <div className="EditableTodo">
       {isEditing ? (
         <TodoForm
-          handleSave={handleSave}
+          onSubmit={updateTodoAndToggleEdit}
           todo={todo}
         />
       ) : (

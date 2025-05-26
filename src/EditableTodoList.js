@@ -11,7 +11,7 @@ import EditableTodo from "./EditableTodo";
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
 
-function EditableTodoList({ todos, update, remove }) {
+function EditableTodoList({ todos, updateTodo, removeTodo }) {
 
   function renderTodos() {
     return todos.map(
@@ -19,8 +19,8 @@ function EditableTodoList({ todos, update, remove }) {
         <EditableTodo
           key={todo.id}
           todo={todo}
-          update={update}
-          remove={remove}
+          updateTodo={updateTodo}
+          removeTodo={removeTodo}
         />
     );
   }

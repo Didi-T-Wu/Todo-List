@@ -14,6 +14,7 @@ import Todo from "./Todo";
 
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
+  // TODO: handle case where a todo is completed
   let top = todos.reduce(
     (acc, cur) =>
       cur.priority < acc.priority ? cur : acc, todos[0]

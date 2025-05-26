@@ -13,7 +13,7 @@ import React, { useState } from "react";
  */
 
 
-function TodoForm({ handleSave, todo }) {
+function TodoForm({ onSubmit, todo }) {
 
   const initialFormData = {
     title: todo? todo.title : "",
@@ -35,7 +35,7 @@ function TodoForm({ handleSave, todo }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave({ ...formData, id: todo?.id });
+    onSubmit(formData);
     setFormData(initialFormData);
 
   }
