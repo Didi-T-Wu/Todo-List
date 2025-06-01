@@ -12,13 +12,14 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-
+// TODO: add deadlines
 function TodoForm({ onSubmit, todo }) {
 
   const initialFormData = {
     title: todo? todo.title : "",
     description: todo? todo.description : "",
-    priority: todo? todo.priority : 1
+    priority: todo? todo.priority : 1,
+    deadline: todo? todo.deadline : "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -38,6 +39,11 @@ function TodoForm({ onSubmit, todo }) {
     onSubmit(formData);
     setFormData(initialFormData);
 
+  }
+
+  function localeDateToISO(dateString) {
+    const date = new Date(dateString);
+    return date.toISOString().slice(0, 10);
   }
 
   return (
@@ -67,6 +73,21 @@ function TodoForm({ onSubmit, todo }) {
           aria-label="Description"
         />
       </div>
+      <div className=" mb-3 w-75 d-flex justify-content-between">
+          <label htmlFor='newTodo-deadline'
+            className="d-inline-flex">Deadline:&nbsp;&nbsp;
+          </label>
+          <input id='newTodo-deadline'
+            name="deadline"
+            type="date"
+            aria-label="Deadline"
+            placeholder="Deadline"
+            value={formData.deadline}
+            min={localeDateToISO(new Date().toLocaleDateString())}
+            onChange={handleChange}
+            className="form-control form-control-sm d-inline-flex"
+          />
+        </div>
       <div className="mb-3 d-flex justify-content-between">
         <div className="w-75 d-flex justify-content-between">
           <label htmlFor='newTodo-priority'
@@ -78,9 +99,9 @@ function TodoForm({ onSubmit, todo }) {
             onChange={handleChange}
             className="form-control form-control-sm d-inline-flex"
           >
-            <option value={1}>One</option>
-            <option value={2}>Two</option>
-            <option value={3}>Three</option>
+            <option value={1}>High</option>
+            <option value={2}>Medium</option>
+            <option value={3}>Low</option>
           </select>
         </div>
         <button className='btn-primary rig btn btn-sm NewTodoForm-addBtn'>
