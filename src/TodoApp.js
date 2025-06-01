@@ -65,12 +65,14 @@ function TodoApp({ initialTodos }) {
         </div>
 
         <div className="col-md-6">
-          {todos.length > 0 && (
-            <section className="mb-4">
+           <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo todos={todos} />
+              {todos.length === 0 ? (
+                <span className="text-muted">You have no todos.</span>
+              ) : (
+                <TopTodo todos={todos} />
+              )}
             </section>
-          )}
           <section>
             <h3 className="mb-3">Add New</h3>
             <TodoForm onSubmit={createTodo} />
