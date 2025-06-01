@@ -10,24 +10,58 @@ import EditableTodo from "./EditableTodo";
  *
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
+const TODAY = new Date().toISOString().slice(0, 10);
 
 function EditableTodoList({ todos, updateTodo, removeTodo }) {
 
-  function renderTodos() {
-    return todos.map(
-      todo =>
-        <EditableTodo
-          key={todo.id}
-          todo={todo}
-          updateTodo={updateTodo}
-          removeTodo={removeTodo}
-        />
-    );
+  const groupedTodosByDeadline = (todos)=> {
+    const grouped = {};
+
+    for (const todo of todos) {
+      if (!todo.deadline){
+        if (!grouped["No Deadline"]) {
+          grouped["No Deadline"] = [];
+        }
+        grouped["No Deadline"].push(todo);
+      }else{
+        if (!grouped[todo.deadline]) {
+          grouped[todo.deadline] = [];
+        }
+        grouped[todo.deadline].push(todo);
+      }
+    }
+    return grouped;
+  }
+
+  const sortedTodosByDeadline = Object.entries(groupedTodosByDeadline(todos)).sort((a, b) => {
+    return new Date(a[0]) - new Date(b[0]);
+  });
+
+  function renderGroupedTodos() {
+    return sortedTodosByDeadline.map((grouped) =>{
+      const [deadline, todos] = grouped;
+
+      return (
+         <div key={deadline}>
+          <h3>{deadline===TODAY ? 'Today': deadline}</h3>
+          <br/>
+          {todos.map(todo => (
+            <EditableTodo
+              key={todo.id}
+              todo={todo}
+              updateTodo={updateTodo}
+              removeTodo={removeTodo}
+            />
+          ))}
+         </div>
+      );
+
+    })
   }
 
   return (
     <div>
-      {renderTodos()}
+      {renderGroupedTodos()}
     </div>
   );
 }
