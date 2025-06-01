@@ -12,7 +12,7 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-// TODO: add deadlines
+
 function TodoForm({ onSubmit, todo }) {
 
   const initialFormData = {
