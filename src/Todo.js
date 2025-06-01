@@ -9,7 +9,7 @@ import React from "react";
  **/
 // TODO: make this checkbox toggle the isCompleted state
 function Todo({ todo, toggleComplete }) {
-  const { title, description, priority, isCompleted, deadline } = todo;
+  const { title, description, priority, isCompleted } = todo;
   const renderPriority = () => {
     switch (priority) {
       case 1:
