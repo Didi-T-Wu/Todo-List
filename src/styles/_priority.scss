@@ -1,0 +1,30 @@
+.priority-badge {
+    @extend .d-inline-flex;
+    @extend .px-2;
+    @extend .fw-semibold;
+    @extend .rounded-2;
+    font-size: 0.7rem;
+
+    &.priority-high {
+      background-color:$danger-bg-subtle;
+      color:$danger;
+    }
+
+    &.priority-medium {
+      background-color: #cfe2ff;
+      color: $primary;
+
+    }
+
+    &.priority-low {
+      background-color:$success-bg-subtle;
+      color: $success;
+
+    }
+
+    &.priority-unknown {
+      background-color: #e2e3e5;
+      color: #41464b;
+      border-color: #d3d6d8;
+    }
+  }
