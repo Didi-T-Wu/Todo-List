@@ -13,7 +13,8 @@ $padding: 10px;
 // Photo by <a href="https://unsplash.com/@marissacristina?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Marissa Grootes</a> on <a href="https://unsplash.com/photos/white-spiral-notebook-beside-brown-clip-b2wZlsyaWvo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 //Photo by <a href="https://unsplash.com/@artboardstudio?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Artboard Studio</a> on <a href="https://unsplash.com/photos/white-printer-paper-beside-magnifying-glass-c-KRSHct7Ho?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 //Photo by <a href="https://unsplash.com/@mockupbee?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">mockupbee</a> on <a href="https://unsplash.com/photos/text-5E5eFrPTzLI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-
+@import "~bootstrap/scss/bootstrap";
+@import "priority";
 
 * {
   margin: 0;
