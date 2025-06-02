@@ -8,47 +8,16 @@ import React from "react";
  * { EditableTodo, TopTodo } -> Todo
  **/
 function Todo({ todo }) {
-  const { title, description, priority, isCompleted } = todo;
-  const renderPriority = () => {
-    switch (priority) {
-      case '1':
-        return "High";
-      case '2':
-        return "Medium";
-      case '3':
-        return "Low";
-      default:
-        return "Unknown";
-    }
-  }
-  const getPriorityClass = () => {
-    switch(priority) {
-      case '1':
-        return "priority-high";
-      case '2':
-        return "priority-medium";
-      case '3':
-        return "priority-low";
-      default:
-        return "priority-unknown";
-    }
+  const { title, description, isCompleted } = todo;
+
+  // Dynamically render line-through style based on isCompleted
+  const toggleLineThroughStyle = () => {
+    return isCompleted ? "line-through" : "none";
   }
   return (
-    <div >
-      <div >
-        <div
-          style={{
-            textDecoration: isCompleted ? "line-through" : "none",
-            cursor: "pointer",
-          }}
-        >
-          {title}
-        </div>
-        <small>{description}</small>
-      </div>
-      <div className={`priority-badge ${getPriorityClass()}`}>
-        {renderPriority()}
-      </div>
+    <div className="Todo">
+      <div className = {`Todo-title ${toggleLineThroughStyle()}`}>{title}</div>
+      <div className = "Todo-description">{description}</div>
     </div>
   );
 }

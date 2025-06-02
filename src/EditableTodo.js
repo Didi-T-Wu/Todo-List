@@ -14,16 +14,11 @@ import TodoForm from "./TodoForm";
 
 function EditableTodo({ todo, updateTodo, removeTodo }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted || false);
+  const { priority } = todo;
 
   /** Toggle if this is being edited */
   function toggleEdit() {
     setIsEditing(isEditing => !isEditing);
-  }
-
-  /** Toggle if this is completed */
-  function toggleCompleted() {
-    setIsCompleted(isCompleted => !isCompleted);
   }
 
   /** Call remove fn passed to this. */
@@ -42,13 +37,37 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
   }
 
   const updateTodoAndToggleCompleted = () => {
-    toggleCompleted()
     const updatedTodo = {
       ...todo,
-      isCompleted
+      isCompleted:!todo.isCompleted
     };
     updateTodo(updatedTodo);
 
+  }
+  // Dynamically render priority and apply corresponding color
+  const renderPriority = () => {
+    switch (priority) {
+      case '1':
+        return "High";
+      case '2':
+        return "Medium";
+      case '3':
+        return "Low";
+      default:
+        return "Unknown";
+    }
+  }
+  const getPriorityClass = () => {
+    switch(priority) {
+      case '1':
+        return "priority-high";
+      case '2':
+        return "priority-medium";
+      case '3':
+        return "priority-low";
+      default:
+        return "priority-unknown";
+    }
   }
 
   return (
@@ -74,7 +93,11 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
               Del
             </button>
           </div>
-          <Todo todo={todo} toggleComplete={updateTodoAndToggleCompleted}/>
+          <input type='checkbox' checked={todo.isCompleted} onChange={updateTodoAndToggleCompleted} />
+          <Todo todo={todo}/>
+          <div className={`priority-badge ${getPriorityClass()}`}>
+        {renderPriority()}
+      </div>
         </div>
       )}
     </div>
