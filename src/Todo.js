@@ -7,38 +7,47 @@ import React from "react";
  *
  * { EditableTodo, TopTodo } -> Todo
  **/
-// TODO: make this checkbox toggle the isCompleted state
-function Todo({ todo, toggleComplete }) {
+function Todo({ todo }) {
   const { title, description, priority, isCompleted } = todo;
   const renderPriority = () => {
     switch (priority) {
-      case 1:
+      case '1':
         return "High";
-      case 2:
+      case '2':
         return "Medium";
-      case 3:
+      case '3':
         return "Low";
       default:
         return "Unknown";
     }
   }
-
+  const getPriorityClass = () => {
+    switch(priority) {
+      case '1':
+        return "priority-high";
+      case '2':
+        return "priority-medium";
+      case '3':
+        return "priority-low";
+      default:
+        return "priority-unknown";
+    }
+  }
   return (
-    <div className="Todo">
-      <div>
+    <div >
+      <div >
         <div
-          onClick={toggleComplete}
           style={{
             textDecoration: isCompleted ? "line-through" : "none",
             cursor: "pointer",
           }}
         >
-          <b>{title}</b>
+          {title}
         </div>
-        <small>Priority: {renderPriority()}</small>
-      </div>
-      <div>
         <small>{description}</small>
+      </div>
+      <div className={`priority-badge ${getPriorityClass()}`}>
+        {renderPriority()}
       </div>
     </div>
   );
