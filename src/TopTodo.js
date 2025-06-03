@@ -12,10 +12,9 @@ import Todo from "./Todo";
  * TodoApp -> TopTodo
  */
 
-
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
-
+  console.log('TopTodo todos:', todos);
   function findTopTodo(todos) {
     if (todos.length === 0) return null;
 
@@ -27,7 +26,7 @@ function TopTodo({ todos }) {
     // Find the todo with the highest priority (lowest priority number)
     return incompleteTodos.reduce((highestPriorityTodo, currentTodo) => {
       const isEarlierDeadline = new Date(currentTodo.deadline) <= new Date(highestPriorityTodo.deadline);
-      const isHigherPriority = currentTodo.priority < highestPriorityTodo.priority;
+      const isHigherPriority = currentTodo.priority <= highestPriorityTodo.priority;
 
       return isEarlierDeadline && isHigherPriority
       ? currentTodo
