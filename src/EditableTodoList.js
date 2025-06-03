@@ -10,7 +10,8 @@ import EditableTodo from "./EditableTodo";
  *
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
-const TODAY = new Date().toISOString().slice(0, 10);
+const TODAY = new Date(new Date().toLocaleDateString()).toISOString().slice(0, 10);
+const NO_DEADLINE = "9999-12-31";
 
 function EditableTodoList({ todos, updateTodo, removeTodo }) {
 
@@ -18,17 +19,12 @@ function EditableTodoList({ todos, updateTodo, removeTodo }) {
     const grouped = {};
 
     for (const todo of todos) {
-      if (!todo.deadline){
-        if (!grouped["No Deadline"]) {
-          grouped["No Deadline"] = [];
-        }
-        grouped["No Deadline"].push(todo);
-      }else{
+
         if (!grouped[todo.deadline]) {
           grouped[todo.deadline] = [];
         }
         grouped[todo.deadline].push(todo);
-      }
+
     }
     return grouped;
   }
@@ -41,9 +37,19 @@ function EditableTodoList({ todos, updateTodo, removeTodo }) {
     return sortedTodosByDeadline.map((grouped) =>{
       const [deadline, todos] = grouped;
 
+      const TodayOrNoDeadline = () => {
+        if (deadline === TODAY) {
+          return 'Today';
+        }
+        if (deadline === NO_DEADLINE) {
+          return 'No Deadline';
+        }
+        return deadline
+      }
+
       return (
          <div key={deadline}>
-          <h3>{deadline===TODAY ? 'Today': deadline}</h3>
+          <h3>{TodayOrNoDeadline()}</h3>
           <br/>
           {todos.map(todo => (
             <EditableTodo

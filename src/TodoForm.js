@@ -12,14 +12,15 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
+// TODO: gather all date methods together
 
 function TodoForm({ onSubmit, todo }) {
 
   const initialFormData = {
     title: todo? todo.title : "",
     description: todo? todo.description : "",
-    priority: todo? todo.priority : 1,
-    deadline: todo? todo.deadline : "",
+    priority: todo? todo.priority : "1", // Default to high priority
+    deadline: todo? todo.deadline :"",
   };
 
   const [formData, setFormData] = useState(initialFormData);

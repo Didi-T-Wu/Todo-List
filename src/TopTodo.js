@@ -12,6 +12,7 @@ import Todo from "./Todo";
  * TodoApp -> TopTodo
  */
 
+
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
 
@@ -25,7 +26,10 @@ function TopTodo({ todos }) {
 
     // Find the todo with the highest priority (lowest priority number)
     return incompleteTodos.reduce((highestPriorityTodo, currentTodo) => {
-      return currentTodo.priority < highestPriorityTodo.priority
+      const isEarlierDeadline = new Date(currentTodo.deadline) <= new Date(highestPriorityTodo.deadline);
+      const isHigherPriority = currentTodo.priority < highestPriorityTodo.priority;
+
+      return isEarlierDeadline && isHigherPriority
       ? currentTodo
       : highestPriorityTodo;
     });
@@ -40,7 +44,7 @@ function TopTodo({ todos }) {
 
   return (
     <div>
-      <Todo todo={topTodo} />
+      <Todo todo={topTodo}/>
     </div>
   );
 }
