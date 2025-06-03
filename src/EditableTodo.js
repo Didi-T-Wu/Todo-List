@@ -78,26 +78,33 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
           todo={todo}
         />
       ) : (
-        <div className="mb-3">
-          <div className="float-end text-sm-end">
-            <button
-              className='EditableTodo-toggle btn-link btn btn-sm'
-              onClick={toggleEdit}
-            >
-              Edit
-            </button>
-            <button
-              className='EditableTodo-delBtn btn-link btn btn-sm text-danger'
-              onClick={handleDelete}
-            >
-              Del
-            </button>
+        <div className="editable-todo-item">
+          <div className="top-side">
+              <input
+                    className="editable-todo-checkbox"
+                    type='checkbox'
+                    checked={todo.isCompleted}
+                    onChange={updateTodoAndToggleCompleted}
+              />
+              <Todo todo={todo}/>
           </div>
-          <input type='checkbox' checked={todo.isCompleted} onChange={updateTodoAndToggleCompleted} />
-          <Todo todo={todo}/>
-          <div className={`priority-badge ${getPriorityClass()}`}>
-        {renderPriority()}
-      </div>
+          <div className="bottom-side">
+              <div className={`priority-badge ${getPriorityClass()}`}>{renderPriority()}</div>
+              <div className="editable-todo-buttons">
+                  <button
+                    className='EditableTodo-toggle'
+                    onClick={toggleEdit}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className='EditableTodo-delBtn'
+                    onClick={handleDelete}
+                  >
+                    Del
+                  </button>
+              </div>
+          </div>
         </div>
       )}
     </div>
