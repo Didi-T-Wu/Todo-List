@@ -15,6 +15,8 @@ import TodoForm from "./TodoForm";
  *
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
+const NO_DEADLINE = "9999-12-31"; // Placeholder for no deadline
+
 function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
@@ -29,8 +31,11 @@ function TodoApp({ initialTodos }) {
 
   /** add a new todo to list */
   function createTodo(formData) {
+    // Ensure deadline is set to a default value if not provided
+    if (!formData.deadline) {
+      formData.deadline = NO_DEADLINE; // Set to no deadline if not provided
+    }
     setTodos(currTodos => [...currTodos, { ...formData, id: uuid(), isCompleted: false }]);
-
   }
 
   /** update a todo with updatedTodo */
