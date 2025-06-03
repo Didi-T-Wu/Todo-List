@@ -14,7 +14,7 @@ import Todo from "./Todo";
 
 function TopTodo({ todos }) {
   // lowest-priority # is the highest priority
-  console.log('TopTodo todos:', todos);
+  // earliest deadline is the highest priority
   function findTopTodo(todos) {
     if (todos.length === 0) return null;
 
