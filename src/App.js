@@ -1,9 +1,9 @@
 import React from "react";
-import QuoteApp from "./QuoteApp";
 import TodoApp from "./TodoApp";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
+import "./styles/style.scss";
+
 
 /** Site application.
  *
@@ -13,20 +13,20 @@ import "./App.css";
  *
  * App -> TodoApp
  **/
-
 function App() {
   return (
-    <main className="App">
-      <header className="container-fluid pt-4 pb-1">
-        <div className="container">
-          <h1>My Todos</h1>
-          <QuoteApp />
-        </div>
+    <main className="container-fluid">
+      <header className="text-center py-3">
+        <h1>My Todos</h1>
+        <p>Manage your todos efficiently!</p>
       </header>
-
-      <section className="container mt-4">
+      <section className="container mt-2">
         <TodoApp initialTodos={[]} />
-        <Footer />
+      </section>
+      <section className="container-fluid pt-4 pb-1">
+        <div className="container">
+          <Footer />
+        </div>
       </section>
     </main>
   );
