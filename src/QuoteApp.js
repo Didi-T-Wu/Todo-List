@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import DisplayQuote from './DisplayQuote';
+import React, { useState, useEffect } from 'react';
+import Quote from './Quote';
 
 
 /** App for handling generation of a quote.
@@ -7,14 +7,21 @@ import DisplayQuote from './DisplayQuote';
  * State:
  * - quote : {'text': string, 'author': string}
  *
- * App -> QuoteApp -> { QuoteDisplay }
+ * App -> QuoteApp -> { Quote }
  */
 const API_URL = "https://inspo-quotes-api.herokuapp.com/quotes/random";
 
 function QuoteApp() {
 
   const [quote, setQuote] = useState(null);
-  const [buttonText , setButtonText] = useState("Generate Quote");
+
+
+  useEffect(() => {
+    // Fetch a quote when the component mounts
+    generateQuote();
+  }
+  , []);
+
 
   /** Generate a new quote */
   function generateQuote() {
@@ -26,19 +33,20 @@ function QuoteApp() {
       return res.json();
     }).then(data => {
       setQuote(data.quote);
-      setButtonText("New Quote");
     }).catch(err => {
       console.error("Error fetching quote:", err);
     });
   }
 
   return (
-    <main className="QuoteApp">
-      <div className="container">
-        {quote && <DisplayQuote quote={quote} />}
-        <button onClick={generateQuote} className="btn btn-primary">{buttonText}</button>
-      </div>
-    </main>
+    <div className="QuoteApp container-fluid py-3 bg-primary-subtle text-end" >
+        <div>{quote && <Quote quote={quote} />}</div>
+        <button
+            onClick={generateQuote}
+            className="btn btn-outline-dark">
+            New Quote
+        </button>
+    </div>
   );
 }
 
