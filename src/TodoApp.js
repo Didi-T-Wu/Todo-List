@@ -3,7 +3,8 @@ import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
-import TodoForm from "./TodoForm";
+import ModalForm from "./ModalForm";
+import QuoteApp from "./QuoteApp";
 
 /** App for managing a todo list.
  *
@@ -57,7 +58,8 @@ function TodoApp({ initialTodos }) {
     <main className="TodoApp">
       <div className="row">
 
-        <div className="col-md-6">
+        <div className="col-md-6 w-300">
+          <div className="d-flex flex-column justify-content-between  mb-3 h-100">
           {todos.length > 0 ? (
             <EditableTodoList
               todos={todos}
@@ -67,6 +69,8 @@ function TodoApp({ initialTodos }) {
           ) : (
             <span className="text-muted">You have no todos.</span>
           )}
+           <ModalForm onSubmit={createTodo} />
+           </div>
         </div>
 
         <div className="col-md-6">
@@ -77,11 +81,8 @@ function TodoApp({ initialTodos }) {
               ) : (
                 <TopTodo todos={todos} />
               )}
+              <QuoteApp />
             </section>
-          <section>
-            <h3 className="mb-3">Add New</h3>
-            <TodoForm onSubmit={createTodo} />
-          </section>
         </div>
 
       </div>
