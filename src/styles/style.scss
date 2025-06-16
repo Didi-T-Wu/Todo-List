@@ -2,7 +2,7 @@ $light-color: #f4f4f4;
 $dark-color: #333;
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
-$font-stack: 'Arial', Helvetica,sans-serif;
+$font-stack: 'Arial', Helvetica, sans-serif;
 $font-size: 16px;
 $border-radius: 4px;
 $transition-duration: 0.3s;
@@ -10,13 +10,12 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $padding: 10px;
 // Importing Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-// Photo by <a href="https://unsplash.com/@marissacristina?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Marissa Grootes</a> on <a href="https://unsplash.com/photos/white-spiral-notebook-beside-brown-clip-b2wZlsyaWvo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-//Photo by <a href="https://unsplash.com/@artboardstudio?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Artboard Studio</a> on <a href="https://unsplash.com/photos/white-printer-paper-beside-magnifying-glass-c-KRSHct7Ho?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-//Photo by <a href="https://unsplash.com/@mockupbee?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">mockupbee</a> on <a href="https://unsplash.com/photos/text-5E5eFrPTzLI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 @import "~bootstrap/scss/bootstrap";
 @import "priority";
 @import "todo";
 @import "editableTodo";
+@import "todoApp";
+
 
 * {
   margin: 0;
@@ -28,7 +27,6 @@ body {
   font-size: $font-size;
   color: $dark-color;
   line-height: 1.6;
-  // background-image: url("../assets/images/bg-image-artboard-studio-c-KRSHct7Ho-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
