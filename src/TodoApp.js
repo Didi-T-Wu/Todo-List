@@ -5,6 +5,7 @@ import TopTodo from "./TopTodo";
 import EditableTodoList from "./EditableTodoList";
 import ModalForm from "./ModalForm";
 import QuoteApp from "./QuoteApp";
+import TodoForToday from "./TodoForToday";
 
 /** App for managing a todo list.
  *
@@ -55,37 +56,43 @@ function TodoApp({ initialTodos }) {
   }
 
   return (
-    <main className="TodoApp">
-      <div className="row">
-
-        <div className="col-md-6 w-300">
-          <div className="d-flex flex-column justify-content-between  mb-3 h-100">
-          {todos.length > 0 ? (
-            <EditableTodoList
-              todos={todos}
-              updateTodo={updateTodo}
-              removeTodo={removeTodo}
-            />
-          ) : (
-            <span className="text-muted">You have no todos.</span>
-          )}
-           <ModalForm onSubmit={createTodo} />
-           </div>
+    <main className="TodoApp d-flex flex-wrap" >
+        <div className="col-md-6 d-flex flex-column justify-content-between p-2" style={{ height: "70vh" }}>
+          <div >
+              {todos.length > 0 ? (
+                <div>
+                  <EditableTodoList
+                    todos={todos}
+                    updateTodo={updateTodo}
+                    removeTodo={removeTodo}
+                  />
+                </div>
+              ) : (
+                <h5 className="text-muted">You have no todos.</h5>
+              )}
+          </div>
+          <div >
+            <ModalForm onSubmit={createTodo} />
+          </div>
         </div>
-
-        <div className="col-md-6">
-           <section className="mb-4">
-              <h3>Top Todo</h3>
+        <div className="col-md-6 d-flex flex-column justify-content-between p-2" style={{ height: "70vh" }}>
+             <div>
+              <h3 className="border-bottom">Top Todo</h3>
               {todos.length === 0 ? (
-                <span className="text-muted">You have no todos.</span>
+                <h5 className="text-muted">You have no todos.</h5>
               ) : (
                 <TopTodo todos={todos} />
               )}
-              <QuoteApp />
-            </section>
-        </div>
+              </div>
+              <div>
+                <h3 className="border-bottom">Today's Todos</h3>
+                <TodoForToday todos={todos} />
+              </div>
+              <div>
+                <QuoteApp />
+              </div>
 
-      </div>
+        </div>
     </main>
   );
 }
