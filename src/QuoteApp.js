@@ -39,7 +39,7 @@ function QuoteApp() {
   }
 
   return (
-    <div className="QuoteApp container-fluid py-3 bg-primary-subtle text-end" >
+    <div className="QuoteApp container-fluid py-3 bg-primary-subtle text-end rounded shadow-lg p-3 bg-white " >
         <div>{quote && <Quote quote={quote} />}</div>
         <button
             onClick={generateQuote}
