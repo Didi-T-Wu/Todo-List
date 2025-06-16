@@ -56,8 +56,8 @@ function ModalForm({ onSubmit, todo }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="fs-6 w-100 ">
-      +
+      <Button variant="primary" onClick={handleShow} className="fs-6 w-100 shadow-sm">
+       + Add New
       </Button>
 
       <Modal show={show} onHide={handleClose}>
