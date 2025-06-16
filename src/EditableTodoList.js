@@ -48,9 +48,8 @@ function EditableTodoList({ todos, updateTodo, removeTodo }) {
       }
 
       return (
-         <div key={deadline}>
-          <h3>{TodayOrNoDeadline()}</h3>
-          <br/>
+         <div key={deadline} style={{  "width": "90%" }} >
+          <h3 className="mb-3 mt-5 border-bottom">{TodayOrNoDeadline()}</h3>
           {todos.map(todo => (
             <EditableTodo
               key={todo.id}
@@ -64,9 +63,8 @@ function EditableTodoList({ todos, updateTodo, removeTodo }) {
 
     })
   }
-
   return (
-    <div>
+    <div className="overflow-scroll " style={{ maxHeight: "60vh" }}>
       {renderGroupedTodos()}
     </div>
   );
