@@ -97,7 +97,6 @@ function ModalForm({ onSubmit, todo }) {
                  aria-label="Deadline"
                  placeholder="Deadline"
                  value={formData.deadline}
-                 min={localeDateToISO(new Date().toLocaleDateString())}
                  onChange={handleChange}
               />
             </Form.Group>

@@ -84,7 +84,6 @@ function TodoForm({ onSubmit, todo }) {
             aria-label="Deadline"
             placeholder="Deadline"
             value={formData.deadline}
-            min={localeDateToISO(new Date().toLocaleDateString())}
             onChange={handleChange}
             className="form-control form-control-sm d-inline-flex"
           />
