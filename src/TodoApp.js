@@ -17,7 +17,9 @@ import TodoForToday from "./TodoForToday";
  *
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
+// TODO: live-clock instead of static date
 const NO_DEADLINE = "9999-12-31"; // Placeholder for no deadline
+const TODAY = new Date(new Date().toLocaleDateString()).toISOString().slice(0, 10);
 
 function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(() => {
@@ -57,7 +59,10 @@ function TodoApp({ initialTodos }) {
 
   return (
     <main className="TodoApp d-flex flex-wrap" >
+
         <div className="col-md-6 d-flex flex-column justify-content-between p-2" style={{ height: "70vh" }}>
+          <h3 className="border-bottom">All To-Dos</h3>
+          <br/>
           <div >
               {todos.length > 0 ? (
                 <div>
@@ -77,15 +82,15 @@ function TodoApp({ initialTodos }) {
         </div>
         <div className="col-md-6 d-flex flex-column justify-content-between p-2" style={{ height: "70vh" }}>
              <div>
-              <h3 className="border-bottom">Top Todo</h3>
+              <h3 className="border-bottom">Top To-Do</h3>
               {todos.length === 0 ? (
-                <h5 className="text-muted">You have no todos.</h5>
+                <h5 className="text-muted">You have no to-dos.</h5>
               ) : (
                 <TopTodo todos={todos} />
               )}
               </div>
               <div>
-                <h3 className="border-bottom">Today's Todos</h3>
+                <h3 className="border-bottom">Today's To-Dos</h3>
                 <TodoForToday todos={todos} />
               </div>
               <div>
