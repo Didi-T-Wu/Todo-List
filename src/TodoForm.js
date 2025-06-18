@@ -42,10 +42,6 @@ function TodoForm({ onSubmit, todo }) {
 
   }
 
-  function localeDateToISO(dateString) {
-    const date = new Date(dateString);
-    return date.toISOString().slice(0, 10);
-  }
 
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>

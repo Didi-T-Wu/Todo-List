@@ -49,11 +49,6 @@ function ModalForm({ onSubmit, todo }) {
 
   }
 
-  function localeDateToISO(dateString) {
-    const date = new Date(dateString);
-    return date.toISOString().slice(0, 10);
-  }
-
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="fs-6 w-100 shadow-sm">
