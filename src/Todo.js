@@ -12,12 +12,12 @@ function Todo({ todo }) {
 
   // Dynamically render line-through style based on isCompleted
   const toggleLineThroughStyle = () => {
-    return isCompleted ? "line-through" : "none";
+    return isCompleted ? "line-through text-body-tertiary" : "none";
   }
   return (
     <div className="Todo">
       <div className = {`Todo-title ${toggleLineThroughStyle()}`}>{title}</div>
-      <div className = "Todo-description">{description}</div>
+      <div className = {`Todo-description ${toggleLineThroughStyle()}`}>{description}</div>
     </div>
   );
 }

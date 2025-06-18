@@ -14,7 +14,7 @@ import TodoForm from "./TodoForm";
 
 function EditableTodo({ todo, updateTodo, removeTodo }) {
   const [isEditing, setIsEditing] = useState(false);
-  const { priority } = todo;
+  const { priority, isCompleted } = todo;
 
   /** Toggle if this is being edited */
   function toggleEdit() {
@@ -36,6 +36,7 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
     toggleEdit();
   }
 
+  /** toggle isCompleted and update in ancestor */
   const updateTodoAndToggleCompleted = () => {
     const updatedTodo = {
       ...todo,
@@ -70,6 +71,10 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
     }
   }
 
+  const toggleGrayOutStyle= () => {
+    return isCompleted ? "opacity-50" : "";
+  }
+
   return (
     <div className="EditableTodo">
       {isEditing ? (
@@ -78,7 +83,7 @@ function EditableTodo({ todo, updateTodo, removeTodo }) {
           todo={todo}
         />
       ) : (
-        <div className="editable-todo-item">
+        <div className={`editable-todo-item  ${toggleGrayOutStyle()}`}>
           <div className="top-side">
               <input
                     className="editable-todo-checkbox"
