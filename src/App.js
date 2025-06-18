@@ -17,7 +17,7 @@ function App() {
   return (
     <main className="container-fluid bg-secondary min-vh-100 d-flex flex-column">
       <header className="text-center py-3 text-light">
-        <h1>My To-Dos</h1>
+        <h1>My To-Do</h1>
         <p>Manage your todos efficiently!</p>
         <p>Today's date: {TODAY}</p>
       </header>
