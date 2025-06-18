@@ -3,18 +3,19 @@
         font-size: 1rem;
         @extend .fw-semibold;
         @extend .mb-1;
-
-        &.line-through {
-            text-decoration: line-through;
-        }
-        &.none {
-            text-decoration: none;
-        }
     }
     .Todo-description {
         font-size: 0.9rem;
         @extend .text-body-secondary;
         @extend .mb-2;
+    }
+
+
+    .line-through {
+        text-decoration: line-through;
+    }
+    .none {
+        text-decoration: none;
     }
 
 }
