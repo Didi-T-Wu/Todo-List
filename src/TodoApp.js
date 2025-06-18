@@ -58,11 +58,9 @@ function TodoApp({ initialTodos }) {
 
   return (
     <main className="TodoApp d-flex flex-wrap" >
-
         <div className="col-md-6 d-flex flex-column justify-content-between p-2" style={{ height: "70vh" }}>
-          <h3 className="border-bottom">All To-Dos</h3>
-          <br/>
           <div >
+              <h3 className="border-bottom">All To-Dos</h3>
               {todos.length > 0 ? (
                 <div>
                   <EditableTodoList
