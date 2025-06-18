@@ -15,41 +15,106 @@ const NO_DEADLINE = "9999-12-31";
 
 function EditableTodoList({ todos, updateTodo, removeTodo }) {
 
-  const groupedTodosByDeadline = (todos)=> {
+  const groupAndSortTodosByDeadline = (todos)=> {
     const grouped = {};
 
     for (const todo of todos) {
-
         if (!grouped[todo.deadline]) {
           grouped[todo.deadline] = [];
         }
         grouped[todo.deadline].push(todo);
-
     }
-    return grouped;
+
+    for(const [deadline, todos] of Object.entries(grouped)) {
+        // Sort todos by priority within each deadline group
+        grouped[deadline]=   groupAndSortTodosByPriority(todos)
+    }
+    const sorted = Object.entries(grouped).sort((a, b) => {
+      return new Date(a[0]) - new Date(b[0]);
+    });
+    return sorted;
   }
 
-  const sortedTodosByDeadline = Object.entries(groupedTodosByDeadline(todos)).sort((a, b) => {
-    return new Date(a[0]) - new Date(b[0]);
-  });
+  const groupAndSortTodosByPriority = (todos) => {
+    const grouped = {};
+    const completed = '4' // Assuming '4' is the priority for completed todos
+    const sortedTodos = []
+
+    for (const todo of todos) {
+      if (todo.isCompleted) {
+        if(!grouped[completed]) {
+          grouped[completed] = [];
+        }
+        grouped[completed].push(todo);
+        continue; // Exit this iteration after adding completed todos
+      }
+      if (!grouped[todo.priority]) {
+        grouped[todo.priority] = [];
+      }
+      grouped[todo.priority].push(todo);
+    }
+
+    let sorted = Object.entries(grouped).sort((a, b) => {
+      return a[0] - b[0];
+    });
+
+    for(const items of sorted ) {
+      sortedTodos.push(...items[1]);
+    }
+    return sortedTodos;
+  }
+
+  function getDeadlineStatus(deadline){
+
+    const defaultDeadlineStatus ={
+      date: deadline,
+      status:deadline,
+      label: deadline,
+      color: "black"
+    }
+
+    if (deadline < TODAY) {
+      return {...defaultDeadlineStatus,
+        status: 'overdue',
+        label: ' ⚠️ Overdue',
+        color: 'red'};
+    }
+    if (deadline === TODAY) {
+      return {...defaultDeadlineStatus,
+        status: 'today',
+        label: 'Today',
+        color: 'black'};
+    }
+    if (deadline === NO_DEADLINE) {
+      return {...defaultDeadlineStatus,
+        status: 'no due date',
+        label: 'No Deadline',
+        color: 'black'};
+    }
+    return defaultDeadlineStatus
+  }
+
+
 
   function renderGroupedTodos() {
-    return sortedTodosByDeadline.map((grouped) =>{
+    return groupAndSortTodosByDeadline(todos).map((grouped) =>{
       const [deadline, todos] = grouped;
 
-      const TodayOrNoDeadline = () => {
-        if (deadline === TODAY) {
-          return 'Today';
+      const renderDeadlineLabel = () => {
+        const { label, color, date } = getDeadlineStatus(deadline);
+        if (date < TODAY) {
+          return <span style={{ color }}>{label} {date}</span>;
         }
-        if (deadline === NO_DEADLINE) {
-          return 'No Deadline';
+        if (date === TODAY) {
+          return <span style={{ color }}>{label} {date}</span>;
         }
-        return deadline
+
+        return <span style={{ color }}>{label}</span>;
       }
 
       return (
          <div key={deadline} style={{  "width": "90%" }} >
-          <h3 className="mb-3 mt-5 border-bottom">{TodayOrNoDeadline()}</h3>
+          <h4 className="mb-3 mt-5 border-bottom">{ renderDeadlineLabel()}</h4>
           {todos.map(todo => (
             <EditableTodo
               key={todo.id}
