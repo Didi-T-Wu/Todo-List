@@ -19,7 +19,6 @@ import TodoForToday from "./TodoForToday";
  */
 // TODO: live-clock instead of static date
 const NO_DEADLINE = "9999-12-31"; // Placeholder for no deadline
-const TODAY = new Date(new Date().toLocaleDateString()).toISOString().slice(0, 10);
 
 function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(() => {
