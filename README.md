@@ -23,7 +23,7 @@ It helps you manage tasks efficiently by organizing them into **All To-Dos**, **
 
 [View Live](https://velvety-monstera-1cccd9.netlify.app)
 
-![App Screenshot](./screenshots/todo-app.png)
+![App Screenshot](https://github.com/Didi-T-Wu/Todo-List/blob/main/public/screenshots/todo-app.png)
 
 ---
 
