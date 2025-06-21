@@ -64,9 +64,6 @@ Running npm start launches your app locally, usually at http://localhost:3000.
 npm install sass
 ```
 
-
-## 📁 Folder Structure
-
 ## ✨ Customization Ideas
 Add categories
 
