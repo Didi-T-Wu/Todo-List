@@ -17,7 +17,6 @@ import TodoForToday from "./TodoForToday";
  *
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
-// TODO: live-clock instead of static date
 const NO_DEADLINE = "9999-12-31"; // Placeholder for no deadline
 
 function TodoApp({ initialTodos }) {
@@ -70,7 +69,7 @@ function TodoApp({ initialTodos }) {
                   />
                 </div>
               ) : (
-                <h5 className="text-muted">You have no todos.</h5>
+                <h5 className="text-muted">You have no to-dos.</h5>
               )}
           </div>
           <div >
